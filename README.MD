@@ -2,6 +2,8 @@
 
 [![License](https://img.shields.io/github/license/derkalaender/p5js-typescript-webpack.svg?color=blue&style=flat-square)](https://github.com/derkalaender/p5js-typescript-webpack/blob/master/LICENSE)
 
+> forked from: [derkalaender](https://github.com/derkalaender/p5js-typescript-webpack)
+
 Example project and starter tenplate in one. 
 For demonstration purposes I've included a minimal use case. If you want to start fresh delete: `/drone, attractor.ts & mover.ts` and change the
 content of `sketch.ts` to:
