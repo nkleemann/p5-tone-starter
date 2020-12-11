@@ -1,5 +1,5 @@
 {
-  "name": "p5js-typescript-webpack",
+  "name": "p5-tone-starter",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -10,7 +10,8 @@
   "author": "derkalaender",
   "license": "MIT",
   "dependencies": {
-    "p5": "^0.8.0"
+    "p5": "^0.8.0",
+    "tone": "^14.7.71"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

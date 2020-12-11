@@ -17,6 +17,6 @@ module.exports = merge(common, {
       title: "Dev | " + package_json.name,
       template: "index.html",
     }),
-    new WebpackCdnPlugin(cdn.p5),
+    new WebpackCdnPlugin(cdn.cdn_modules),
   ],
 });

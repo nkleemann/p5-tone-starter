@@ -1,43 +1,56 @@
-import * as p5 from "p5";
+import * as p5   from "p5";
+import * as Tone from "tone";
 
-const max_size = 70;
-const min_size = 30;
-let counter = min_size;
-let grow = true;
+import { Attractor } from "./attractor";
+import { Mover }     from "./mover";
+import { Drone }     from "./drone/drone";
 
-let x = 0;
-let y = 0;
 
-const sketch = (p: p5) => {
-  p.setup = () => {
-    p.createCanvas(p.windowWidth, p.windowHeight);
-    x = p.width / 2;
-    y = p.height / 2;
-  };
+// aural
+let drone: Drone;
 
-  p.windowResized = () => {
-    p.resizeCanvas(p.windowWidth, p.windowHeight);
-  };
+// visual
+let attractor:          Attractor;
+let movers:             Mover[];
+let gravitationalForce: p5.Vector;
 
-  p.draw = () => {
-    console.log("I will not be included in production!");
+var sketch = function(p: p5) {
 
-    p.background(51);
-    x = p.lerp(x, p.mouseX, 0.1);
-    y = p.lerp(y, p.mouseY, 0.1);
-    if (
-      (counter < max_size && counter > max_size - 1) ||
-      (counter > min_size && counter < min_size + 1)
-    ) {
-      grow = !grow;
+  p.setup = function() {
+    
+    const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+
+    // audiocontext shizzle
+    canvas.mouseClicked(function() { 
+      Tone.start(); 
+    });
+
+    drone = new Drone();
+    drone.startModulation();
+
+    attractor = new Attractor(p, p.windowWidth/2,p.windowHeight/2);
+    movers = [];
+    gravitationalForce = p.createVector(0, 0);
+
+    for (let i = 0; i < 100; i++) {
+      let m = new Mover(p, p.random(0, 600), p.random(120, 150), 0.5);
+      movers.push(m);
     }
+  };
 
-    p.circle(x, y, counter);
+  p.draw = function() {
+    p.background(240);
+    p.fill(0);
+    p.text("click inside the canvas to start audio playback", 40, 40);
 
-    if (grow) {
-      counter = p.lerp(counter, max_size, 0.05);
-    } else {
-      counter = p.lerp(counter, min_size, 0.05);
+    attractor.display();
+
+    for (let j = 0; j < 100; j++) {
+      gravitationalForce = attractor.attract(movers[j]);
+      movers[j].applyForce(gravitationalForce);
+      movers[j].update();
+
+      movers[j].display();
     }
   };
 };

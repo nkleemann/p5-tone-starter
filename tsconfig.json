@@ -6,6 +6,16 @@
     "module": "esNext",
     "target": "esNext",
     "allowJs": false,
-    "removeComments": true
+    "removeComments": true,
+
+    // for intellisense with tone
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "moduleResolution": "node"
   }
 }

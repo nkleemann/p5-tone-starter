@@ -1,12 +1,27 @@
-# **P5JS TypeScript Webpack Template** _with Babel, ESlint and Prettier_
+# **p5JS & ToneJS TypeScript Webpack Example** with Babel, ESlint and Prettier
 
 [![License](https://img.shields.io/github/license/derkalaender/p5js-typescript-webpack.svg?color=blue&style=flat-square)](https://github.com/derkalaender/p5js-typescript-webpack/blob/master/LICENSE)
 
-_Recommended IDE: [Visual Studio Code](https://code.visualstudio.com/)_
+Example project and starter tenplate in one. 
+For demonstration purposes I've included a minimal use case. If you want to start fresh delete: `/drone, attractor.ts & mover.ts` and change the
+content of `sketch.ts` to:
+
+```ts
+import * as p5 from "p5";
+
+const sketch = (p: p5) => {
+  p.setup = () => {
+  };
+
+  p.draw = () => {
+  };
+};
+
+new p5(sketch);
+```
 
 ## Installation
 
-1. Make sure to have installed [Node.js](https://nodejs.org)
 2. Download/Clone this repository
 3. Execute the following shell command in the repo directory:
 
@@ -17,8 +32,6 @@ npm install
 ## Usage
 
 ```shell
-  npm run build #build production-ready, minified bundle
-  npm run dev   #launch dev-enviroment: opens browser with hot reload
+  npm run build # build production-ready, minified bundle
+  npm run dev   # launch dev-enviroment: opens browser with hot reload
 ```
-
-Thanks for using this template :heart:
